@@ -63,10 +63,11 @@
     }
   },
   "lint-staged": {
-    ".js": [
+    "*.js": [
       "prettier --config .prettierrc --write",
       "eslint --fix",
-      "stylelint --fix"
+      "stylelint --syntax scss --fix",
+      "git add"
     ]
   }
 }
