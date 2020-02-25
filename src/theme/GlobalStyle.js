@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
    }
      
    body {
-     font-family: ${({ theme }) => theme.font.font};
+     font-family: ${({ theme }) => theme.font.fontRegular};
      background: ${({ theme }) => theme.color.primary};
      color: ${({ theme }) => theme.color.dark};
      padding: 5rem 7rem;
