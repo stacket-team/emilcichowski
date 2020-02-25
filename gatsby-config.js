@@ -1,4 +1,5 @@
-/* eslint-disable */
+const path = require('path');
+
 module.exports = {
   siteMetadata: {
     title: `emilcichowski`,
@@ -12,6 +13,7 @@ module.exports = {
         assets: path.join(__dirname, 'src/assets'),
         components: path.join(__dirname, 'src/components'),
         pages: path.join(__dirname, 'src/pages'),
+        theme: path.join(__dirname, 'src/theme'),
         src: path.join(__dirname, 'src'),
       },
     },
@@ -56,8 +58,7 @@ module.exports = {
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/assets/images/favicon.png`
+        display: `minimal-ui`
       },
     },
   ],
