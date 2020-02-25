@@ -1,5 +1,16 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
+import Header from 'components/Header/Header';
 
-const MainTemplate = () => <h1>main template</h1>
+const StyledWrapper = styled.div`
+  width: 100%;
+  height: calc(100vh - 10rem);
+`;
 
-export default MainTemplate
+const MainTemplate = () => (
+  <StyledWrapper>
+    <Header />
+  </StyledWrapper>
+);
+
+export default MainTemplate;
