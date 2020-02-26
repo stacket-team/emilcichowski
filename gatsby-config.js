@@ -8,6 +8,14 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        typekit: {
+          id: 'fik3aiu',
+        },
+      },
+    },
+    {
       resolve: `gatsby-plugin-root-import`,
       options: {
         assets: path.join(__dirname, 'src/assets'),

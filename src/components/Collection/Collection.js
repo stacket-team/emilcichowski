@@ -3,6 +3,10 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 
 const StyledWrapper = styled.div`
+  margin: 7rem 12rem 0 12rem;
+`;
+
+const StyledInnerWrapper = styled.div`
   width: 100%;
   height: 100%;
   background: ${({ theme }) => theme.color.secondary};
@@ -41,24 +45,26 @@ const Collection = () => {
   };
 
   return (
-    <StyledWrapper onMouseLeave={handleMouseLeave}>
-      {categories.map((category, i) => (
-        <StyledCategory
-          key={category[0]}
-          highlighted={category[1]}
-          to={category[2]}
-          onMouseEnter={() => {
-            setCategories(prevState => {
-              return prevState.map((value, j) => {
-                value[1] = i === j;
-                return value;
+    <StyledWrapper>
+      <StyledInnerWrapper onMouseLeave={handleMouseLeave}>
+        {categories.map((category, i) => (
+          <StyledCategory
+            key={category[0]}
+            highlighted={category[1]}
+            to={category[2]}
+            onMouseEnter={() => {
+              setCategories(prevState => {
+                return prevState.map((value, j) => {
+                  value[1] = i === j;
+                  return value;
+                });
               });
-            });
-          }}
-        >
-          {category[0]}
-        </StyledCategory>
-      ))}
+            }}
+          >
+            {category[0]}
+          </StyledCategory>
+        ))}
+      </StyledInnerWrapper>
     </StyledWrapper>
   );
 };

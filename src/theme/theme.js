@@ -9,8 +9,8 @@ export const theme = {
     black: 'hsl(0, 0%, 0%)',
   },
   font: {
-    fontRegular: 'acumin-pro-condensed, sans-serif',
-    fontCondensed: 'acumin-pro-extra-condensed, sans-serif',
+    fontRegular: 'acumin-pro-condensed',
+    fontCondensed: 'acumin-pro-extra-condensed',
     regular: 300,
     bold: 700,
   },

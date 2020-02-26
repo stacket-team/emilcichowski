@@ -1,11 +1,9 @@
 import React from 'react';
 import gql from 'graphql-tag';
-import { useQuery } from '@apollo/react-hooks'
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import { useQuery } from '@apollo/react-hooks';
 
 const id = '5e55067dc3a3bb36c2dc785e';
-const baseURL = "http://localhost:5000"
+const baseURL = 'http://localhost:5000';
 
 const FETCH_PHOTOS = gql`
   query FetchPhotos($id: ID!) {
@@ -14,12 +12,14 @@ const FETCH_PHOTOS = gql`
       description
       tags
       src
-    } 
+    }
   }
 `;
 
 const FetchPhotos = () => {
-  const { loading, error, data } = useQuery(FETCH_PHOTOS, { variables: { id } });
+  const { loading, error, data } = useQuery(FETCH_PHOTOS, {
+    variables: { id },
+  });
 
   if (loading) return <p>loading photos</p>;
   if (error) return <p>an error occured: ${error.message}</p>;
