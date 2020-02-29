@@ -1,9 +1,10 @@
 import React from 'react';
-import MainTemplate from '../templates/MainTemplate';
+import MainTemplate from 'templates/MainTemplate';
+import FetchPhotos from 'components/FetchPhotos/FetchPhotos';
 
 const WildPage = () => (
   <MainTemplate>
-    <h1>wild</h1>
+    <FetchPhotos tag="trzecie" />
   </MainTemplate>
 );
 
