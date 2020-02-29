@@ -1,37 +1,86 @@
-import React from 'react';
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import gql from 'graphql-tag';
 import { useQuery } from '@apollo/react-hooks';
 
-const id = '5e55067dc3a3bb36c2dc785e';
-const baseURL = 'http://localhost:5000';
-
 const FETCH_PHOTOS = gql`
-  query FetchPhotos($id: ID!) {
-    photos(author: $id) {
+  query FetchPhotos($tag: String!) {
+    photos(tag: $tag) {
       title
       description
-      tags
       src
     }
   }
 `;
 
-const FetchPhotos = () => {
+const StyledWrapper = styled.div`
+  margin-top: -3rem;
+  width: 100%;
+  height: calc(100% - 2rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledInnerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const StyledImg = styled.div`
+  width: 90rem;
+  height: 70rem;
+  background: url(${props => props.src}) no-repeat center/contain;
+  margin-bottom: 2rem;
+`;
+
+const StyledTitle = styled.h1`
+  font-weight: ${({ theme }) => theme.font.bold};
+  text-transform: uppercase;
+  font-size: 3.6rem;
+`;
+
+const StyledDescription = styled.p`
+  font-size: 1.8rem;
+`;
+
+const FetchPhotos = ({ tag }) => {
   const { loading, error, data } = useQuery(FETCH_PHOTOS, {
-    variables: { id },
+    variables: { tag },
   });
+  const [imageIndex, setImageIndex] = useState(0);
 
   if (loading) return <p>loading photos</p>;
   if (error) return <p>an error occured: ${error.message}</p>;
 
-  return data.photos.map(item => (
-    <>
-      <p>{item.title}</p>
-      <p>{item.description}</p>
-      <p>{item.tags.join(', ')}</p>
-      <img src={baseURL + item.src} alt={item.title} />
-    </>
-  ));
+  const handleImageClick = () => {
+    setImageIndex(imageIndex + 1);
+
+    if (imageIndex === data.photos.length - 1) {
+      setImageIndex(0);
+    }
+  };
+
+  return (
+    <StyledWrapper>
+      <StyledInnerWrapper>
+        <StyledImg
+          src={`http://localhost:5000${data.photos[imageIndex].src}`}
+          onClick={handleImageClick}
+        />
+        <StyledTitle>{data.photos[imageIndex].title}</StyledTitle>
+        <StyledDescription>
+          {data.photos[imageIndex].description}
+        </StyledDescription>
+      </StyledInnerWrapper>
+    </StyledWrapper>
+  );
+};
+
+FetchPhotos.propTypes = {
+  tag: PropTypes.string.isRequired,
 };
 
 export default FetchPhotos;
