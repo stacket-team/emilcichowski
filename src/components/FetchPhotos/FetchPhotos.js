@@ -56,11 +56,13 @@ const FetchPhotos = ({ tag }) => {
   if (error) return <p>an error occured: ${error.message}</p>;
 
   const handleImageClick = () => {
-    setImageIndex(imageIndex + 1);
-
-    if (imageIndex === data.photos.length - 1) {
-      setImageIndex(0);
-    }
+    setImageIndex(prevState => {
+      prevState += 1;
+      if (imageIndex === data.photos.length - 1) {
+        prevState = 0;
+      }
+      return prevState;
+    });
   };
 
   return (
